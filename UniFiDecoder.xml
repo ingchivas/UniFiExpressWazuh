@@ -1,0 +1,28 @@
+<decoder name="unifi-express">
+    <prematch type="pcre2">\d+\.\d+\.\d+\.\d+| \w\w\w </prematch>
+    <regex type="pcre2"> \d\d:\d\d:\d\d (\S+) (\S+) (\[\w-\]+):\s+(.+)$</regex>
+    <order>timestamp, message_type</order>
+</decoder>
+
+<decoder name="unifi-express">
+    <parent>unifi-express</parent>
+    <regex type="pcre2">DHCP(DISCOVER|REQUEST|OFFER|ACK)\((\w+)\) ([\d\.]+) (\S+)( (\S+))?</regex>
+    <order>dhcp_type, interface, ip, mac, hname</order>
+</decoder>
+
+<decoder name="unifi-express">
+    <parent>unifi-express</parent>
+    <regex type="pcre2">RTR-SOLICIT\((\w+)\)\s+(\S+)</regex>
+    <order>interface_rtr, mac_rtr</order>
+</decoder>
+
+
+<decoder name="unifi-dnsmasq">
+    <prematch type="pcre2">dnsmasq-dhcp\[\d+\]:</prematch>
+</decoder>
+
+<decoder name="unifi-rtr-solicit">
+    <parent>unifi-dnsmasq</parent>
+    <regex type="pcre2">RTR-SOLICIT\((\w+)\)\s+(\S+)</regex>
+    <order>interface_rtr, mac_rtr</order>
+</decoder>
