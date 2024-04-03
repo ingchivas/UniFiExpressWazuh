@@ -1,0 +1,17 @@
+<group name="mac_address_logs">
+
+  <!-- Unknown MAC address -->
+  <rule id="100441" level="7">
+    <decoded_as>unknown-mac-address</decoded_as>
+    <description>Unknown MAC address $(mac_address) detected</description>
+    <group>mac_address,unknown</group>
+  </rule>
+
+  <!-- Known MAC address -->
+  <rule id="100442" level="7">
+    <decoded_as>known-mac-address</decoded_as>
+    <description>Known MAC address $(mac_address) detected: Vendor: $(vendor), Country: $(location)</description>
+    <group>mac_address,known</group>
+  </rule>
+
+</group>
