@@ -1,0 +1,13 @@
+<!-- Decoder for unknown MAC addresses -->
+<decoder name="unknown-mac-address">
+  <prematch type="pcre2">UNKNOWN MAC Address: </prematch>
+  <regex type="pcre2">(\w\w:\w\w:\w\w:\w\w:\w\w:\w\w) was not found in the database$</regex>
+  <order>mac_address</order>
+</decoder>
+
+<!-- Decoder for known MAC addresses -->
+<decoder name="known-mac-address">
+  <prematch type="pcre2">MAC Address: </prematch>
+  <regex type="pcre2">(\w\w:\w\w:\w\w:\w\w:\w\w:\w\w) is from ([\w\s]+) located in (\w+)$</regex>
+  <order>mac_address, vendor, location</order>
+</decoder>
